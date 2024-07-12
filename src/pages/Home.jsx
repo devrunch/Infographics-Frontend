@@ -44,7 +44,7 @@ const Home = () => {
                     <p className="text-paragraph font-manrope lg:px-20">Use our expertly crafted infographic templates to boost client engagement and retention. Perfect for accountants and tax professionals, our templates turn complex information into engaging visuals.</p>
                     <div className="mx-auto">
                         <Link to="/search" className="px-5 py-4 bg-secondary text-white hover:bg-secondaryhover transition-colors rounded-full"> Join For Free</Link>
-                        <Link href="#" className="text-secondary hover:underline px-5 py-4">Learn More</Link>
+                        <Link to="#" className="text-secondary hover:underline px-5 py-4">Learn More</Link>
                     </div>
                 </div>
                 <div className="w-1/4 lg:flex hidden flex-col  space-y-10">
