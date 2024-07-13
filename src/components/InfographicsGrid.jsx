@@ -55,7 +55,7 @@ const Infographics = () => {
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded ${currentPage === 1 ? '' : 'bg-blue-500 text-white'}`}
+          className={`px-4 py-2 rounded `}
         >
           <img src={arrow2} alt="" className={`w-8 rotate-180 ${currentPage === 1 ? 'saturate-0' : ''}`} />
         </button>
@@ -65,7 +65,7 @@ const Infographics = () => {
           disabled={currentPage === totalPages}
           className={`px-4 py-2 rounded`}
         >
-          <img src={arrow2} alt="" className={`w-8 ${currentPage === 1 ? 'saturate-0' : ''}`}/>
+          <img src={arrow2} alt="" className={`w-8 ${currentPage === totalPages ? 'saturate-0' : ''}`}/>
         </button>
       </div>
     </div>
