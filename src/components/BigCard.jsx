@@ -13,7 +13,7 @@ const Card = () => {
           <h1 className='font-manrope font-bold'>Visual aids for financial reporting and analysis.</h1>
         </div>
         <div className='flex justify-center'>
-          <Link href="#" className="w-full text-center py-1 bg-secondary text-white hover:bg-secondaryhover transition-colors rounded-full"> Join For Free</Link>
+          <Link href="#" className="w-full text-center py-1 bg-secondary text-white hover:bg-secondaryhover transition-colors rounded-full">Select</Link>
         </div>
       </div>
     </>
