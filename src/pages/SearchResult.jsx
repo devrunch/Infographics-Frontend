@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Card from '../components/Card';
 import arrow2 from '../assets/arrow2.svg';
+import Common from '../components/Sections/Common';
 
 const SearchPage = () => {
   const [infographics, setInfographics] = useState([]);
@@ -135,6 +136,7 @@ const SearchPage = () => {
           </div>
         </div>
       </section>
+      <Common/>
     </>
   );
 };

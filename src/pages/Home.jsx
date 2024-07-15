@@ -6,6 +6,7 @@ import BigCard from '../components/BigCard'
 import goldstar from '../assets/goldstar.svg'
 import Trending from '../components/Sections/Trending'
 import { Link } from 'react-router-dom'
+import Common from '../components/Sections/Common'
 
 const Home = () => {
     return (
@@ -122,6 +123,7 @@ const Home = () => {
                 </div>
             </section>
             <Trending/>
+            <Common/>
         </>
     )
 }
