@@ -7,15 +7,15 @@ import goldstar from '../assets/goldstar.svg'
 import Trending from '../components/Sections/Trending'
 import { Link } from 'react-router-dom'
 import Common from '../components/Sections/Common'
-
+import img from '../assets/12.png'
 const Home = () => {
     return (
         <>
             <section className='w-full h-[90vh] flex items-center justify-around'>
                 <div className="w-1/4 lg:flex hidden flex-col items-end space-y-10">
                     <div className='w-44'>
-                        <div className='bg-primary2 w-44 h-44 rounded-xl flex justify-center items-center'>
-                            <img src={play} alt="" />
+                        <div className='bg-primary2 w-40 overflow-hidden rounded-xl flex justify-center items-center'>
+                            <img src={img} alt="" />
                         </div>
                         <p className='font-manrope px-1'>How it Works</p>
                         <p className='text-xs text-paragraph px-1'>2 mins</p>
@@ -50,8 +50,10 @@ const Home = () => {
                 </div>
                 <div className="w-1/4 lg:flex hidden flex-col  space-y-10">
                     <img src={arrow} alt="" className='w-52' />
-                    <div className='w-44 m-auto'>
-                        <div className='w-44 h-52 rounded-xl bg-primary2'> </div>
+                    <div className='w-48 m-auto'>
+                        <div className='w-48  rounded-xl bg-primary2 overflow-hidden '> 
+                            <img src="https://utility.caclouddesk.com/uploads/1720813804805-689974353.png" alt="" className='object-cover'/>
+                        </div>
                         <div className='px-1 flex justify-between items-start'>
                             <div className='flex items-center gap-x-1'>
                                 <p className='text-paragraph uppercase'> 4.8 </p>
