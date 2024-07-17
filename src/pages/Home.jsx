@@ -1,14 +1,28 @@
 import star from '../assets/star.svg'
 import arrow from '../assets/arrow.svg'
 import arrow2 from '../assets/arrow2.svg'
-import play from '../assets/play.svg'
 import BigCard from '../components/BigCard'
 import goldstar from '../assets/goldstar.svg'
 import Trending from '../components/Sections/Trending'
 import { Link } from 'react-router-dom'
 import Common from '../components/Sections/Common'
 import img from '../assets/12.png'
+import { useState } from 'react'
+import { useEffect } from 'react'
 const Home = () => {
+    const [infographics, setInfographics] = useState([]);
+    const fetchInfographics = async () => {
+        try {
+            const response = await fetch('https://utility.caclouddesk.com/infographics/categories');
+            const data = await response.json();
+            setInfographics(data);
+        } catch (error) {
+            console.error('Error fetching infographics:', error);
+        }
+    };
+    useEffect(() => {
+        fetchInfographics();
+    }, []);
     return (
         <>
             <section className='w-full h-[90vh] flex items-center justify-around'>
@@ -51,8 +65,8 @@ const Home = () => {
                 <div className="w-1/4 lg:flex hidden flex-col  space-y-10">
                     <img src={arrow} alt="" className='w-52' />
                     <div className='w-48 m-auto'>
-                        <div className='w-48  rounded-xl bg-primary2 overflow-hidden '> 
-                            <img src="https://utility.caclouddesk.com/uploads/1720813804805-689974353.png" alt="" className='object-cover'/>
+                        <div className='w-48  rounded-xl bg-primary2 overflow-hidden '>
+                            <img src="https://utility.caclouddesk.com/uploads/1720813804805-689974353.png" alt="" className='object-cover' />
                         </div>
                         <div className='px-1 flex justify-between items-start'>
                             <div className='flex items-center gap-x-1'>
@@ -73,14 +87,16 @@ const Home = () => {
                 <h2 className="text-primary font-manrope font-semibold uppercase text-center">Explore Our Categories</h2>
                 <h1 className='text-center text-5xl font-manrope font-bold'>Discover Diverse Infographic Templates</h1>
                 <p className='text-paragraph text-base text-center '>Browse through our extensive collection of infographic templates designed to cater to<br /> various needs of accountants, tax professionals, and more.</p>
-                <div className='flex flex-wrap gap-3 justify-center items-center overflow-hidden lg:gap-x-16 lg:px-16'>
-                    <BigCard />
-                    <BigCard />
-                    <BigCard />
-                    <BigCard />
-                    <BigCard />
-                    <BigCard />
-
+                <div className='flex flex-wrap gap-3 justify-center items-stretch overflow-hidden lg:gap-x-16 lg:px-16'>
+                    {infographics && infographics.slice(0, 6).map((infographic, index) => (
+                        <BigCard
+                            key={index}
+                            imgSrc={infographic.image}
+                            link={`/infographic/${infographic._id}`}
+                            category={infographic.tags[0]}
+                            description={infographic.description}
+                        />
+                    ))}
                 </div>
                 <div className='flex justify-center'>
                     <Link to="/search" className="px-5 py-4 bg-secondary text-white hover:bg-secondaryhover transition-colors rounded-full"> Explore All Templates</Link>
@@ -110,22 +126,22 @@ const Home = () => {
                         <div className='flex items-center gap-x-4'>
                             <img src={arrow2} alt="" />
                             <div>
-                                <p className='font-semibold text-lg font-manrope'>Customizable Templates</p>
-                                <p className='text-sm text-paragraph font-manrope'>Tailor each infographic to match your firm’s branding and client needs.</p>
+                                <p className='font-semibold text-lg font-manrope'>Easy-to-Use</p>
+                                <p className='text-sm text-paragraph font-manrope'>User-friendly interface designed for professionals with limited design experience.</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-x-4'>
                             <img src={arrow2} alt="" />
                             <div>
                                 <p className='font-semibold text-lg font-manrope'>Customizable Templates</p>
-                                <p className='text-sm text-paragraph font-manrope'>Tailor each infographic to match your firm’s branding and client needs.</p>
+                                <p className='text-sm text-paragraph font-manrope'>Professionally crafted templates ensuring clarity and visual appeal.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <Trending/>
-            <Common/>
+            <Trending />
+            <Common />
         </>
     )
 }

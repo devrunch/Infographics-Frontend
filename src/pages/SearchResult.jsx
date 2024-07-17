@@ -1,15 +1,20 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Card from '../components/Card';
 import arrow2 from '../assets/arrow2.svg';
 import Common from '../components/Sections/Common';
 
 const SearchPage = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const tagParam = params.get('tag');
   const [infographics, setInfographics] = useState([]);
   const [description, setDescription] = useState('');
-  const [tag, setTag] = useState('');
+  const [tag, setTag] = useState(tagParam || '');
   const [tags, setTags] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
 
   const fetchInfographics = async () => {
     try {
@@ -37,11 +42,12 @@ const SearchPage = () => {
   useEffect(() => {
     fetchInfographics();
     fetchTags();
-  }, [page]);
+  }, [page, tag, description]);
 
   const handleSearch = (e) => {
     e.preventDefault();
     setPage(1);
+    history.push(`?description=${description}&tag=${tag}`);
     fetchInfographics();
   };
 
@@ -76,7 +82,7 @@ const SearchPage = () => {
                   className="ml-2 relative m-0 block flex-auto rounded border border-solid border-neutral-200 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none"
                   aria-label="Select tag"
                 >
-                  <option value="">Select tag</option>
+                  <option value="">Category: None</option>
                   {tags && tags.map((tag) => (
                     <option key={tag} value={tag}>{tag}</option>
                   ))}

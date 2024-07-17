@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Trending from '../components/Sections/Trending';
-import ShareButton from '../components/Sharebutton';
 import { toast } from 'react-toastify';
 import { logo1, logo2, logo3 } from '../components/base64';
 import upload from '../assets/upload.svg';
@@ -31,7 +30,7 @@ const InfographicDownloadPage = () => {
   const [customLogo, setCustomLogo] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [downloadLink, setDownloadLink] = useState('');
-
+  const [blob, setBlob] = useState(null);
   useEffect(() => {
     fetchInfographic();
   }, [id]);
@@ -46,7 +45,24 @@ const InfographicDownloadPage = () => {
       console.error('Error fetching infographic:', error);
     }
   };
-
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Check out this Infographic!',
+          text: 'Here is an Infographic I generated using CA CloudDesk Infographics.',
+          file: [blob], // Link to the infographic image
+        });
+        toast.success('Shared successfully!');
+      } catch (error) {
+        console.error('Error sharing:', error);
+        toast.error('Error sharing the infographic.');
+      }
+    } else {
+      toast.error('Web Share API not supported in this browser.');
+    }
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -79,7 +95,7 @@ const InfographicDownloadPage = () => {
 
       const arrayBuffer = await response.arrayBuffer();
       const blob = new Blob([arrayBuffer], { type: 'image/png' });
-
+      setBlob(blob);
       const link = URL.createObjectURL(blob);
       setDownloadLink(link);
       setShowModal(true);
@@ -146,7 +162,7 @@ const InfographicDownloadPage = () => {
                         className="mr-2"
                         hidden
                       />
-                      <img src={logo.url} alt={logo.name} className={`w-12 h-12 rounded-full p-1 ${selectedLogo==logo.url?" border-black border-2":""}`} />
+                      <img src={logo.url} alt={logo.name} className={`w-12 h-12 rounded-full p-1 ${selectedLogo == logo.url ? " border-black border-2" : ""}`} />
                     </label>
                   ))}
                   <p className='text-paragraph font-ubuntu'>or</p>
@@ -166,9 +182,9 @@ const InfographicDownloadPage = () => {
                     <input
                       type="file"
                       className={`w-12 h-12  rounded-full file:bg-transparent file:text-transparent file:border-none file:text-opacity-0`}
-                      style={{backgroundImage: `url(${customLogo ? URL.createObjectURL(customLogo) : upload})`, backgroundSize: 'cover'}}
+                      style={{ backgroundImage: `url(${customLogo ? URL.createObjectURL(customLogo) : upload})`, backgroundSize: 'cover' }}
                       name='customLogo'
-                      onChange={(e) => {setCustomLogo(e.target.files[0]);setSelectedLogo('');}}
+                      onChange={(e) => { setCustomLogo(e.target.files[0]); setSelectedLogo(''); }}
                     />
                   </label>
                 </div>
@@ -192,15 +208,15 @@ const InfographicDownloadPage = () => {
                   </label>
                 ))}
               </div>
-              <div className='flex justify-center gap-x-2'>
-                <button type='submit' className='bg-[#31A6C7] font-bold text-white px-8 py-2 mt-5 rounded-md hover:text-secondary hover:bg-white hover:border-secondary border-2 border-transparent transition-all'>Download</button>
-                <ShareButton title={`https://caclouddesk.com/infographics/download/${id}`} />
+              <div >
+                <button type='submit' className='bg-[#31A6C7] font-bold text-white px-8 py-2 mt-5 rounded-md hover:text-secondary hover:bg-white hover:border-secondary border-2 border-transparent transition-all'>Generate</button>
+               
               </div>
             </form>
           </div>
         </div>
         <Trending />
-        <Common/>
+        <Common />
       </div>
 
       <Modal
@@ -211,14 +227,40 @@ const InfographicDownloadPage = () => {
         overlayClassName="fixed inset-0 bg-black bg-opacity-50"
       >
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
-          <h2 className="text-xl font-semibold mb-4">Hooray! Your infographics is ready</h2>
+          <div className='flex items-center justify-between'>
+            <h2 className="text-xl font-semibold mb-4">Hooray! Your infographics is ready</h2>
+            <button onClick={() => setShowModal(false)}>
+              <svg width="30" height="30" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M28.5 9.5L9.5 28.5" stroke="#7D7D7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9.5 9.5L28.5 28.5" stroke="#7D7D7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+
+          </div>
           <img src={downloadLink} alt="Infographic Preview" className="h-[70vh] mb-4" />
-          <button
-            onClick={handleDownload}
-            className="bg-[#31A6C7] text-white px-4 py-2 rounded-md hover:text-secondary hover:bg-white hover:border-secondary border-2 border-transparent transition-all"
-          >
-            Download
-          </button>
+          <div className='flex justify-end gap-x-5'>
+
+            <button
+              onClick={handleDownload}
+              className="bg-[#31A6C7] text-white px-4 py-2 rounded-md hover:text-secondary hover:bg-white hover:border-secondary border-2 border-transparent transition-all"
+            >
+              Download
+            </button>
+            <button
+              onClick={handleShare}
+              className=" flex items-center bg-white text-black px-4 py-2 rounded-md hover:text-secondary hover:bg-white hover:border-secondary border-2 border-gray-700 transition-all"
+            >
+              Share
+              <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.7394 8.26091C18.2522 8.26091 19.4785 7.03456 19.4785 5.52178C19.4785 4.009 18.2522 2.78265 16.7394 2.78265C15.2266 2.78265 14.0002 4.009 14.0002 5.52178C14.0002 7.03456 15.2266 8.26091 16.7394 8.26091Z" stroke="#3C4242" stroke-width="1.82609" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M5.78283 14.6522C7.29561 14.6522 8.52196 13.4259 8.52196 11.9131C8.52196 10.4003 7.29561 9.17395 5.78283 9.17395C4.27005 9.17395 3.0437 10.4003 3.0437 11.9131C3.0437 13.4259 4.27005 14.6522 5.78283 14.6522Z" stroke="#3C4242" stroke-width="1.82609" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M16.7394 21.0435C18.2522 21.0435 19.4785 19.8172 19.4785 18.3044C19.4785 16.7916 18.2522 15.5652 16.7394 15.5652C15.2266 15.5652 14.0002 16.7916 14.0002 18.3044C14.0002 19.8172 15.2266 21.0435 16.7394 21.0435Z" stroke="#3C4242" stroke-width="1.82609" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M8.14771 13.2917L14.3838 16.9257" stroke="#3C4242" stroke-width="1.82609" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M14.3747 6.90045L8.14771 10.5344" stroke="#3C4242" stroke-width="1.82609" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+
+            </button>
+          </div>
         </div>
       </Modal>
     </>

@@ -11,8 +11,8 @@ const Card = ({ imageUrl, downloads, tags, title, ids,description }) => {
         </div>
       </div>
       <div className='flex items-center justify-between px-3'>
-        <p className='text-xs px-2 py-1 bg-green-200 text-green-700 font-semibold rounded-full'>{tags}</p>
-      </div>
+        <p className='text-xs px-2 py-1 bg-green-200 text-green-700 font-semibold rounded-full uppercase'>{tags}</p>
+      </div> 
       <div>
       <h1 className='font-manrope font-extrabold text-lg text-left px-3'>{title}</h1>
       <p className='font-manrope text-xs text-paragraph text-left px-3'>{description}</p>
