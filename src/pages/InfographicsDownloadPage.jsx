@@ -30,7 +30,7 @@ const InfographicDownloadPage = () => {
   const [customLogo, setCustomLogo] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [downloadLink, setDownloadLink] = useState('');
-  const [blob, setBlob] = useState(null);
+  const [blobs, setBlobs] = useState(null);
   useEffect(() => {
     fetchInfographic();
   }, [id]);
@@ -51,7 +51,7 @@ const InfographicDownloadPage = () => {
         await navigator.share({
           title: 'Check out this Infographic!',
           text: 'Here is an Infographic I generated using CA CloudDesk Infographics.',
-          file: [blob], // Link to the infographic image
+          files: [blobs], // Link to the infographic image
         });
         toast.success('Shared successfully!');
       } catch (error) {
@@ -95,7 +95,9 @@ const InfographicDownloadPage = () => {
 
       const arrayBuffer = await response.arrayBuffer();
       const blob = new Blob([arrayBuffer], { type: 'image/png' });
-      setBlob(blob);
+      const filess = new File([blob], 'downloaded_image.png', { type: 'image/png' });
+      setBlobs(filess);
+      console.log(filess)
       const link = URL.createObjectURL(blob);
       setDownloadLink(link);
       setShowModal(true);
