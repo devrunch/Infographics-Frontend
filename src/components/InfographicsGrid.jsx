@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import Card from './Card';
 import arrow2 from '../assets/arrow2.svg';
-const Infographics = () => {
+const Infographics = ({category}) => {
   const [infographics, setInfographics] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -13,7 +14,7 @@ const Infographics = () => {
 
   const fetchInfographics = async (page) => {
     try {
-      const response = await fetch(`https://utility.caclouddesk.com/infographics?page=${page}&limit=${limit}`);
+      const response = await fetch(`https://utility.caclouddesk.com/infographics/search?description=&tag=${category||''}&page=${page}&limit=${limit}`);
       const data = await response.json();
       setInfographics(data.infographics); // Assuming API returns infographics in a `infographics` field
       setTotalPages(data.totalPages); // Assuming API returns total pages in a `totalPages` field

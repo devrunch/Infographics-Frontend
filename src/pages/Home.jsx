@@ -9,6 +9,7 @@ import Common from '../components/Sections/Common'
 import img from '../assets/12.png'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import TopPicks from '../components/Sections/TopPicks'
 const Home = () => {
     const [infographics, setInfographics] = useState([]);
     const fetchInfographics = async () => {
@@ -102,6 +103,7 @@ const Home = () => {
                     <Link to="/search" className="px-5 py-4 bg-secondary text-white hover:bg-secondaryhover transition-colors rounded-full"> Explore All Templates</Link>
                 </div>
             </section>
+            <TopPicks/>
             <section className='flex justify-center items-center py-10 flex-wrap'>
                 <div className='lg:w-1/2 flex flex-col items-center justify-center gap-y-5' >
                     <div className='w-9/12 h-96 bg-primary2 rounded-2xl'>
