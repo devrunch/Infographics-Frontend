@@ -76,7 +76,7 @@ const InfographicDownloadPage = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/infographics/${id}/download`, {
+      const response = await fetch(`https://utility.caclouddesk.com/infographics/${id}/download`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
