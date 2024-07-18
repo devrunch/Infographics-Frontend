@@ -7,7 +7,7 @@ const Card = ({ imgSrc,  category, description }) => {
       <div className='lg:w-72 h-64 bg-primary2 rounded-md' style={{ backgroundImage: `url(https://utility.caclouddesk.com/uploads/${imgSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
       <div className='lg:w-72 flex items-center justify-between px-1'>
         <p className='text-xs px-2 py-1 bg-green-200 text-green-700 font-semibold rounded-full uppercase'>{category}</p>
-        <p className='flex text-paragraph text-sm'><img src={page} alt="" />10k posters</p>
+        <p className='flex text-paragraph text-sm'></p>
       </div>
       <div className='lg:w-72'>
         <h1 className='font-manrope font-bold'>{description }</h1>
