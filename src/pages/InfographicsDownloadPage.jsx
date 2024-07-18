@@ -32,6 +32,30 @@ const InfographicDownloadPage = () => {
   const [downloadLink, setDownloadLink] = useState('');
   const [blobs, setBlobs] = useState(null);
   const [generating, setGenerating] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    website: ''
+  });
+
+  const [warnings, setWarnings] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    website: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    if (value.length > 20) {
+      setWarnings({ ...warnings, [name]: 'Warning: Input length may affect the output' });
+    } else {
+      setWarnings({ ...warnings, [name]: '' });
+    }
+  };
   useEffect(() => {
     fetchInfographic();
   }, [id]);
@@ -144,14 +168,57 @@ const InfographicDownloadPage = () => {
             <h1 className="text-2xl font-bold mb-4 capitalize">{infographic.title}</h1>
             <form onSubmit={handleSubmit}>
               <div className='grid grid-cols-4 w-[80%] gap-y-3 grid-rows-4 justify-start font-manrope'>
-                <label className=' col-span-1' htmlFor="name">Firm Name<span className='text-red-600'>*</span></label>
-                <input type="text" className='border border-gray-400 rounded-md ml-2 col-span-3' name='name' required />
-                <label className=' col-span-1' htmlFor="phone">Phone<span className='text-red-600'>*</span></label>
-                <input type="text" className='border border-gray-400 rounded-md ml-2 col-span-3' name="phone" required />
-                <label className=' col-span-1' htmlFor="email">E-mail<span className='text-red-600'>*</span></label>
-                <input type="email" className='border border-gray-400 rounded-md ml-2 col-span-3' name="email" required />
-                <label className=' col-span-1' htmlFor="website">Website<span className='text-red-600'>*</span></label>
-                <input type="text" className='border border-gray-400 rounded-md ml-2 col-span-3' name="website" required />
+                <label className='col-span-1' htmlFor="name">Firm Name<span className='text-red-600'>*</span></label>
+                <div className="col-span-3">
+                  <input
+                    type="text"
+                    className='border border-gray-400 rounded-md ml-2 w-full'
+                    name='name'
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                  {warnings.name && <span className='m-2 text-xs text-yellow-600'>{warnings.name}</span>}
+                </div>
+
+                <label className='col-span-1' htmlFor="phone">Phone<span className='text-red-600'>*</span></label>
+                <div className="col-span-3">
+                  <input
+                    type="text"
+                    className='border border-gray-400 rounded-md ml-2 w-full'
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                  />
+                  {warnings.phone && <span className='m-2 text-xs text-yellow-600'>{warnings.phone}</span>}
+                </div>
+
+                <label className='col-span-1' htmlFor="email">E-mail<span className='text-red-600'>*</span></label>
+                <div className="col-span-3">
+                  <input
+                    type="email"
+                    className='border border-gray-400 rounded-md ml-2 w-full'
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                  {warnings.email && <span className='m-2 text-xs text-yellow-600'>{warnings.email}</span>}
+                </div>
+
+                <label className='col-span-1' htmlFor="website">Website<span className='text-red-600'>*</span></label>
+                <div className="col-span-3">
+                  <input
+                    type="text"
+                    className='border border-gray-400 rounded-md ml-2 w-full'
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    required
+                  />
+                  {warnings.website && <span className=' m-2 text-xs text-yellow-600'>{warnings.website}</span>}
+                </div>
                 <label className=' col-span-1' htmlFor="logo">Logo Upload<span className='text-red-600'>*</span></label>
                 <div className='col-span-3 flex items-center gap-5 '>
                   {predefinedLogos.map((logo) => (
@@ -185,7 +252,7 @@ const InfographicDownloadPage = () => {
                       className="mr-2"
                       hidden
                     />
-                      <img src={customLogo ? URL.createObjectURL(customLogo) : upload} alt='custom logo' className={`w-12 h-12 rounded-full p-1 ${customLogo ? 'border-2 border-black' : ''} `} />
+                    <img src={customLogo ? URL.createObjectURL(customLogo) : upload} alt='custom logo' className={`w-12 h-12 rounded-full p-1 ${customLogo ? 'border-2 border-black' : ''} `} />
                     <input
                       type="file"
                       className={`absolute w-12 h-12  rounded-full file:bg-transparent file:text-transparent file:border-none file:text-opacity-0`}
