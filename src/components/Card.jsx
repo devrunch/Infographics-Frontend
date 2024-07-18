@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 /* eslint-disable react/prop-types */
 const Card = ({ imageUrl, downloads, tags, title, ids,description }) => {
   return (
-    <div className='bg-white w-full md:w-60 rounded-md space-y-4 pb-4 shadow-md'>
+    <div className='bg-white w-full md:w-60 rounded-md space-y-4 flex flex-col justify-between pb-4 shadow-md'>
       <div className='h-64 bg-primary2 rounded-md flex items-end justify-start relative'>
         <img src={imageUrl} alt={title} className='w-full h-full object-cover rounded-md' />
         <div className="absolute m-2 p-1 bg-[#f3f4f6de] border-2 border-gray-200 rounded-md font-manrope text-green-500 text-sm">
