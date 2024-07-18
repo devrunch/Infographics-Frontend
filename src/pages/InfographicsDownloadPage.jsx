@@ -62,7 +62,7 @@ const InfographicDownloadPage = () => {
       toast.error('Web Share API not supported in this browser.');
     }
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -76,7 +76,7 @@ const InfographicDownloadPage = () => {
     }
 
     try {
-      const response = await fetch(`https://utility.caclouddesk.com/infographics/${id}/download`, {
+      const response = await fetch(`http://localhost:3000/infographics/${id}/download`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -181,10 +181,10 @@ const InfographicDownloadPage = () => {
                       className="mr-2"
                       hidden
                     />
+                      <img src={customLogo ? URL.createObjectURL(customLogo) : upload} alt='custom logo' className={`w-12 h-12 rounded-full p-1 ${customLogo ? 'border-2 border-black' : ''} `} />
                     <input
                       type="file"
-                      className={`w-12 h-12  rounded-full file:bg-transparent file:text-transparent file:border-none file:text-opacity-0`}
-                      style={{ backgroundImage: `url(${customLogo ? URL.createObjectURL(customLogo) : upload})`, backgroundSize: 'cover' }}
+                      className={`absolute w-12 h-12  rounded-full file:bg-transparent file:text-transparent file:border-none file:text-opacity-0`}
                       name='customLogo'
                       onChange={(e) => { setCustomLogo(e.target.files[0]); setSelectedLogo(''); }}
                     />
@@ -212,7 +212,6 @@ const InfographicDownloadPage = () => {
               </div>
               <div >
                 <button type='submit' className='bg-[#31A6C7] font-bold text-white px-8 py-2 mt-5 rounded-md hover:text-secondary hover:bg-white hover:border-secondary border-2 border-transparent transition-all'>Generate</button>
-               
               </div>
             </form>
           </div>
