@@ -31,6 +31,7 @@ const InfographicDownloadPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [downloadLink, setDownloadLink] = useState('');
   const [blobs, setBlobs] = useState(null);
+  const [generating, setGenerating] = useState(false);
   useEffect(() => {
     fetchInfographic();
   }, [id]);
@@ -65,6 +66,7 @@ const InfographicDownloadPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setGenerating(true);
     const formData = new FormData(e.target);
     if (!selectedLogo && !customLogo) {
       toast.error('Please select a logo');
@@ -101,8 +103,10 @@ const InfographicDownloadPage = () => {
       const link = URL.createObjectURL(blob);
       setDownloadLink(link);
       setShowModal(true);
+      setGenerating(false);
     } catch (error) {
-      console.error('Error downloading infographic:', error);
+      toast.error('Error downloading infographic.');
+      setGenerating(false);
     }
   };
 
@@ -211,7 +215,7 @@ const InfographicDownloadPage = () => {
                 ))}
               </div>
               <div >
-                <button type='submit' className='bg-[#31A6C7] font-bold text-white px-8 py-2 mt-5 rounded-md hover:text-secondary hover:bg-white hover:border-secondary border-2 border-transparent transition-all'>Generate</button>
+                <button type='submit' disabled={generating} className='bg-[#31A6C7] font-bold text-white px-8 py-2 mt-5 rounded-md hover:text-secondary hover:bg-white hover:border-secondary border-2 border-transparent transition-all'>Generate</button>
               </div>
             </form>
           </div>
@@ -227,9 +231,9 @@ const InfographicDownloadPage = () => {
         className="fixed inset-0 flex items-center justify-center z-50"
         overlayClassName="fixed inset-0 bg-black bg-opacity-50"
       >
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
-          <div className='flex items-center justify-between'>
-            <h2 className="text-xl font-semibold mb-4">Hooray! Your infographics is ready</h2>
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full flex flex-col justify-center items-center">
+          <div className='w-full flex items-center justify-between'>
+            <h2 className="text-xl font-semibold mb-1">Hooray! Your infographics is ready</h2>
             <button onClick={() => setShowModal(false)}>
               <svg width="30" height="30" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M28.5 9.5L9.5 28.5" stroke="#7D7D7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -239,7 +243,7 @@ const InfographicDownloadPage = () => {
 
           </div>
           <img src={downloadLink} alt="Infographic Preview" className="h-[70vh] mb-4" />
-          <div className='flex justify-end gap-x-5'>
+          <div className='w-full flex justify-end gap-x-5'>
 
             <button
               onClick={handleDownload}
