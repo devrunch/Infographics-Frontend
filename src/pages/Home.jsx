@@ -10,6 +10,7 @@ import img from '../assets/12.png'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import TopPicks from '../components/Sections/TopPicks'
+import imagess from '../assets/imagess.png'
 const Home = () => {
     const [infographics, setInfographics] = useState([]);
     const fetchInfographics = async () => {
@@ -106,14 +107,15 @@ const Home = () => {
             <TopPicks/>
             <section className='flex justify-center items-center py-10 flex-wrap'>
                 <div className='lg:w-1/2 flex flex-col items-center justify-center gap-y-5' >
-                    <div className='w-9/12 h-96 bg-primary2 rounded-2xl'>
-                    </div>
-                    <div className='bg-slate-200 flex w-9/12 p-4 rounded-2xl gap-x-5 items-center justify-between'>
+                     
+                    <img src={imagess} className='h-full ' alt="" />
+                    
+                    {/* <div className='bg-slate-200 flex w-9/12 p-4 rounded-2xl gap-x-5 items-center justify-between'>
                         <img src={goldstar} alt="" />
                         <p className='font-manrope font-semibold text-base'>Stay ahead with regularly updated templates reflecting the latest trends and standards in the industry.</p>
-                    </div>
+                    </div> */}
                 </div>
-                <div className='lg:w-1/2 space-y-12 lg:pr-36 px-3 lg:text-left text-center'>
+                <div className='lg:w-1/2 space-y-10 lg:pr-36 px-3 lg:text-left text-center'>
                     <h2 className="text-primary font-manrope font-semibold uppercase">Why Choose us?</h2>
                     <h1 className="text-5xl font-bold font-ubuntu ">Why Our Infographic Templates Stand Out?</h1>
                     <p className="text-paragraph font-manrope text-lg">Our infographic templates are designed to help accountants and tax professionals communicate more effectively. With easy customization, high-quality designs, and user-friendly features, our templates make your work more efficient and impactful.</p>

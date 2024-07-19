@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import page from '../assets/page.svg';
 
 const Card = ({ imgSrc,  category, description }) => {
   return (
