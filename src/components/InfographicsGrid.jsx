@@ -46,7 +46,7 @@ const Infographics = ({category}) => {
             ids={infographic._id}
             imageUrl={`https://utility.caclouddesk.com/uploads/${infographic.image}`}
             downloads={infographic.downloads || '0'}
-            tags={infographic.tags || ['General']}
+            tags={infographic.tags[0] || ['General']}
             description={infographic.description}
             title={infographic.title}
           />
