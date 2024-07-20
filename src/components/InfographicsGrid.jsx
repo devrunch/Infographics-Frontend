@@ -2,11 +2,11 @@
 import { useEffect, useState } from 'react';
 import Card from './Card';
 import arrow2 from '../assets/arrow2.svg';
-const Infographics = ({category}) => {
+const Infographics = ({category,count}) => {
   const [infographics, setInfographics] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const limit = 8; // Number of items per page
+  const limit = count || 8; // Number of items per page
 
   useEffect(() => {
     fetchInfographics(currentPage);
