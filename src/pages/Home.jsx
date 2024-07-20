@@ -31,14 +31,26 @@ const Home = () => {
         <>
             <section className='w-full h-[90vh] flex items-center justify-around'>
                 <div className="w-1/4 lg:flex hidden flex-col items-end space-y-10">
-                    <div className='flex items-end'> 
+                    <div className='flex items-end'>
 
                         <div className='w-44'>
-                            <div className='bg-primary2 w-40 overflow-hidden rounded-xl flex justify-center items-center'>
+                            <div className='bg-primary2 w-44 overflow-hidden rounded-xl flex justify-center items-center'>
                                 <img src={img} alt="" />
                             </div>
-                            <p className='font-manrope px-1'>How it Works</p>
-                            <p className='text-xs text-paragraph px-1'>2 mins</p>
+                            <div className='mt-1 px-2 flex justify-between items-start'>
+                                <div className='flex items-center gap-x-1'>
+                                    <p className='text-paragraph  uppercase'> 4.8 </p>
+                                    <img src={star} alt="" />
+                                    <p className='font-dmsans text-xs text-paragraph uppercase'>(10K+)</p>
+                                </div>
+                                <div className='text-center'>
+                                    <p className='font-manrope font-semibold'>Tax Filing</p>
+                                    <div className='flex justify-end'>
+                                        
+                                        <p className='text-xs py-0.5 px-2 bg-green-200 text-green-700 font-semibold rounded-full'>Tax</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <img src={arrow3} alt="" />
                     </div>
