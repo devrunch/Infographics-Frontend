@@ -44,7 +44,7 @@ const Infographics = ({category}) => {
           <Card
             key={infographic._id}
             ids={infographic._id}
-            imageUrl={`https://utility.caclouddesk.com/uploads/${infographic.image}`}
+            imageUrl={`https://utility.caclouddesk.com/uploads/footer-${infographic.image}`}
             downloads={infographic.downloads || '0'}
             tags={infographic.tags[0] || ['General']}
             description={infographic.description}

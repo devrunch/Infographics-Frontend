@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 const Card = ({ imageUrl, downloads, tags, title, ids,description }) => {
   return (
     <div className='bg-white w-full md:w-60 rounded-md space-y-4 flex flex-col justify-between pb-4 shadow-md'>
-      <div className='h-64 bg-primary2 rounded-md flex items-end justify-start relative'>
+      <div className='h-[17rem] bg-primary2 rounded-md flex items-end justify-start relative'>
         <img src={imageUrl} alt={title} className='w-full h-full object-cover rounded-md' />
-        <div className="absolute m-2 p-1 bg-[#f3f4f6de] border-2 border-gray-200 rounded-md font-manrope text-green-500 text-sm">
-          {downloads} Downloads
-        </div>
       </div>
-      <div className='flex items-center justify-between px-3'>
+      <div className='flex w-f items-center justify-between px-3'>
         <p className='text-xs px-2 py-1 bg-green-200 text-green-700 font-semibold rounded-full uppercase'>{tags}</p>
+        {/* <div className="p-1 bg-[#f3f4f6de] border-2 border-gray-200 rounded-md font-manrope text-green-500 text-sm">
+          {downloads} Downloads
+        </div> */}
       </div> 
       <div>
       <h1 className='font-manrope font-extrabold text-lg text-left px-3'>{title}</h1>

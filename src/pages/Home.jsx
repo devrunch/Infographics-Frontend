@@ -1,6 +1,7 @@
 import star from '../assets/star.svg'
 import arrow from '../assets/arrow.svg'
 import arrow2 from '../assets/arrow2.svg'
+import arrow3 from '../assets/arrow3.svg'
 import BigCard from '../components/BigCard'
 import goldstar from '../assets/goldstar.svg'
 import Trending from '../components/Sections/Trending'
@@ -10,7 +11,8 @@ import img from '../assets/12.png'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import TopPicks from '../components/Sections/TopPicks'
-import imagess from '../assets/imagess.png'
+import imagess from '../assets/Group266.svg'
+
 const Home = () => {
     const [infographics, setInfographics] = useState([]);
     const fetchInfographics = async () => {
@@ -29,12 +31,16 @@ const Home = () => {
         <>
             <section className='w-full h-[90vh] flex items-center justify-around'>
                 <div className="w-1/4 lg:flex hidden flex-col items-end space-y-10">
-                    <div className='w-44'>
-                        <div className='bg-primary2 w-40 overflow-hidden rounded-xl flex justify-center items-center'>
-                            <img src={img} alt="" />
+                    <div className='flex items-end'> 
+
+                        <div className='w-44'>
+                            <div className='bg-primary2 w-40 overflow-hidden rounded-xl flex justify-center items-center'>
+                                <img src={img} alt="" />
+                            </div>
+                            <p className='font-manrope px-1'>How it Works</p>
+                            <p className='text-xs text-paragraph px-1'>2 mins</p>
                         </div>
-                        <p className='font-manrope px-1'>How it Works</p>
-                        <p className='text-xs text-paragraph px-1'>2 mins</p>
+                        <img src={arrow3} alt="" />
                     </div>
                     <div className='w-60 space-y-3'>
                         <div className='flex'>
@@ -104,12 +110,12 @@ const Home = () => {
                     <Link to="/search" className="px-5 py-4 bg-secondary text-white hover:bg-secondaryhover transition-colors rounded-full"> Explore All Templates</Link>
                 </div>
             </section>
-            <TopPicks/>
+            <TopPicks />
             <section className='flex justify-center items-center py-10 flex-wrap'>
                 <div className='lg:w-1/2 flex flex-col items-center justify-center gap-y-5' >
-                     
-                    <img src={imagess} className='h-full ' alt="" />
-                    
+
+                    <img src={imagess} className='max-w-[35rem]' alt="" height={'200px'} />
+
                     {/* <div className='bg-slate-200 flex w-9/12 p-4 rounded-2xl gap-x-5 items-center justify-between'>
                         <img src={goldstar} alt="" />
                         <p className='font-manrope font-semibold text-base'>Stay ahead with regularly updated templates reflecting the latest trends and standards in the industry.</p>
