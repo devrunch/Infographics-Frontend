@@ -3,7 +3,7 @@ import arrow from '../assets/arrow.svg'
 import arrow2 from '../assets/arrow2.svg'
 import arrow3 from '../assets/arrow3.svg'
 import BigCard from '../components/BigCard'
-import goldstar from '../assets/goldstar.svg'
+// import goldstar from '../assets/goldstar.svg'
 import Trending from '../components/Sections/Trending'
 import { Link } from 'react-router-dom'
 import Common from '../components/Sections/Common'
@@ -111,7 +111,7 @@ const Home = () => {
                 </div>
             </section>
             <TopPicks />
-            <section className='flex justify-center items-center py-10 flex-wrap'>
+            <section className='flex justify-center items-center  flex-wrap'>
                 <div className='lg:w-1/2 flex flex-col items-center justify-center gap-y-5' >
 
                     <img src={imagess} className='max-w-[35rem]' alt="" height={'200px'} />
