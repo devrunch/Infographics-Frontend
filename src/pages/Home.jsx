@@ -12,7 +12,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import TopPicks from '../components/Sections/TopPicks'
 import imagess from '../assets/Group266.svg'
-
+import hi5 from '../assets/5.png'
 const Home = () => {
     const [infographics, setInfographics] = useState([]);
     const fetchInfographics = async () => {
@@ -86,7 +86,7 @@ const Home = () => {
                     <img src={arrow} alt="" className='w-52' />
                     <div className='w-48 m-auto'>
                         <div className='w-48  rounded-xl bg-primary2 overflow-hidden '>
-                            <img src="https://utility.caclouddesk.com/uploads/1720813804805-689974353.png" alt="" className='object-cover' />
+                            <img src={hi5} alt="" className='object-cover' />
                         </div>
                         <div className='px-1 flex justify-between items-start'>
                             <div className='flex items-center gap-x-1'>
